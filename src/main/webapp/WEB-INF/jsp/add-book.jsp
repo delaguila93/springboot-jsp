@@ -15,19 +15,19 @@
     			<h5 class="card-title">Añadir un nuevo libro</h5>
     			<c:url var="add_book_url" value="/book/addBook"/>
     			<form:form action="${add_book_url}" method="post" modelAttribute="book">
-    			<div class="form-floating mb-3">
-    			  <form:input type="text" path="isbn" class="form-control" id="floatingInput" placeholder="ISBN" />
-				  <form:label path="isbn" for="floatingInput">ISBN</form:label>
-				</div>
-				<div class="form-floating mb-3">
-				  <form:input type="text" path="name" class="form-control" id="floatingInput" placeholder="Name" />
-				  <form:label path="name" for="floatingPassword">Book Name</form:label>
-				</div>
-				<div class="form-floating mb-3">
-				  <form:input type="text" path="author" class="form-control" id="floatingInput" placeholder="Author" />
-				  <form:label path="author" for="floatingPassword">Author Name</form:label>
-				</div>
-				<input class="btn btn-primary" type="submit" value="Añadir"/>
+	    			<div class="form-floating mb-3">
+	    			  <form:input type="text" path="isbn" class="form-control" id="floatingInput" placeholder="ISBN" />
+					  <form:label path="isbn" for="floatingInput">ISBN</form:label>
+					</div>
+					<div class="form-floating mb-3">
+					  <form:input type="text" path="name" class="form-control" id="floatingInput" placeholder="Name" />
+					  <form:label path="name" for="floatingPassword">Book Name</form:label>
+					</div>
+					<div class="form-floating mb-3">
+					  <form:input type="text" path="author" class="form-control" id="floatingInput" placeholder="Author" />
+					  <form:label path="author" for="floatingPassword">Author Name</form:label>
+					</div>
+					<input class="btn btn-primary" type="submit" value="Añadir"/>
 				</form:form>
     		</div>
     	</div>

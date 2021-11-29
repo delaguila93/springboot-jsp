@@ -42,12 +42,13 @@ public class BookController {
 		final RedirectView redirectView = new RedirectView("/book/viewBooks", true);
 		Book savedBook = bookService.addBook(book);
 		redirectAttributes.addFlashAttribute("savedBook", savedBook);
-		redirectAttributes.addFlashAttribute("addBookSuccess", true);
 		return redirectView;
 	} 
 	
 	@DeleteMapping("/deleteBook")
-	public void deleteBook(@ModelAttribute("book") Book book) {
+	public RedirectView deleteBook(@ModelAttribute("book") Book book) {
+		final RedirectView redirectView = new RedirectView("/book/viewBooks", true);
 		bookService.deleteBook(book.getId());
+		return redirectView;
 	}
 }
