@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -46,16 +47,40 @@ public class BookController {
 		return redirectView;
 	} 
 	
-	@DeleteMapping("/deleteBook")
-	public RedirectView deleteBook(@ModelAttribute("book") Book book) {
+	@RequestMapping(value={"/deleteBook/{id}"},method= {RequestMethod.DELETE, RequestMethod.GET})
+	public String deleteBook(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
 		final RedirectView redirectView = new RedirectView("/book/viewBooks", true);
-		bookService.deleteBook(book.getId());
-		return redirectView;
+		bookService.deleteBook(id);
+		
+		return "redirect:/book/viewBooks";
 	}
 	
 	@GetMapping("/updateBook/{id}")
 	public String viewBooks(Model model, @PathVariable("id") Long id) {
-		model.addAttribute("book", bookService.getBook(id));
+		Book book = bookService.getBook(id);
+		model.addAttribute("book", book);
 		return "update-book";
+	}
+	
+	@PostMapping("/updateBook/{id}")
+	public RedirectView updateBook(@PathVariable("id") Long id, @ModelAttribute("book") Book book,RedirectAttributes redirectAttributes) {
+		final RedirectView redirectView = new RedirectView("/book/viewBooks", true);
+		Book bookUpdate = bookService.getBook(book.getId());
+		Book savedBook = null;
+		if(book.getAuthor() != null) {
+			bookUpdate.setAuthor(book.getAuthor());
+		}
+		if(book.getIsbn() != null) {
+			bookUpdate.setIsbn(book.getIsbn());
+		}
+		
+		if(book.getName() != null) {
+			bookUpdate.setName(book.getName());
+		}
+		
+		savedBook = bookService.updateBook(bookUpdate);	
+		redirectAttributes.addFlashAttribute("savedBook", savedBook);
+		redirectAttributes.addFlashAttribute("addBookSuccess", true);
+		return redirectView;
 	}
 }
