@@ -3,38 +3,49 @@ package com.spring.jsp.models.services;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.jsp.main.dao.BookDao;
 import com.spring.jsp.models.entity.Book;
 
 @Service
 public class BookServiceImpl implements BookService {
 
-	private LinkedList<Book> list = new LinkedList<>();
+	
+	
+	@Autowired
+	private BookDao bookDao;
 	
 	@Override
+	@Transactional(readOnly = true)
 	public List<Book> getBooks() {
-		return list;
+		return (List<Book>)bookDao.findAll();
 	}
 
 	@Override
-	public Book addBook(Book book) {
-		list.add(book);
-		return book;
+	@Transactional
+	public Book addBook(Book book) {	
+		return bookDao.save(book);
 	}
 	
 	@Override
+	@Transactional
 	public Book updateBook(Book book) {
-		return null;
+		return bookDao.save(book);
 	}
 	
 	@Override
+	@Transactional
 	public void deleteBook(Long id) {
-		for (Book book : list) {
-			if (id.equals(book.getId())) {
-				list.remove(book);
-			}
-		}
+		bookDao.deleteById(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Book getBook(Long id) {	
+		return bookDao.findById(id).orElse(null);
 	}
 
 }

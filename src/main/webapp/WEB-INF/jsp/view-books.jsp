@@ -12,6 +12,7 @@
     	<div class="card text-center" style="width: 50rem; box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);">
     		<div class="card-body">
     			<h5 class="card-title">Lista de libros</h5>
+    			<p class="card-text">
     				<div class="table-responsive">
 				        <table class="table table-striped">
 				            <thead>
@@ -27,10 +28,10 @@
 				                        <td>${book.isbn}</td>
 				                        <td>${book.name}</td>
 				                        <td>${book.author}</td>
-				                        <td><a href="/book/updateBook">
-				                        	<button type="button" class="btn btn-primary">
+				                        <td><a href="/book/updateBook/${book.id}"><button type="button" class="btn btn-primary">
 												<i class="bi bi-pencil-square"></i> Editar</button></a>
-											<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteBook">
+										</td>
+				                        <td><button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteBook">
 				                        		<i class="bi bi-trash"></i> Eliminar</button>
 				                        </td>
 				                    </tr>
@@ -55,8 +56,9 @@
 				      	<p>No se podrán revertir los cambios una vez hecho.</p>
 				      </div>
 				      <div class="modal-footer">
+				      	<c:url var="add_book_url" value="/book/deleteBook"/>
 				        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-				        <button type="button" class="btn btn-primary">Borrar</button>
+				        <button type="button" class="btn btn-primary">Aceptar</button>
 				      </div>
 				    </div>
 				  </div>
