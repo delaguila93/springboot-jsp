@@ -28,8 +28,8 @@
 				                        <td>${book.isbn}</td>
 				                        <td>${book.name}</td>
 				                        <td>${book.author}</td>
-				                        <td><button type="button" class="btn btn-primary">
-												<i class="bi bi-pencil-square"></i> Editar</button>
+				                        <td><a href="/book/updateBook/${book.id}"><button type="button" class="btn btn-primary">
+												<i class="bi bi-pencil-square"></i> Editar</button></a>
 										</td>
 				                        <td><button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteBook">
 				                        		<i class="bi bi-trash"></i> Eliminar</button>
