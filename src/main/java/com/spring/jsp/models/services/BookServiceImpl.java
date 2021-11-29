@@ -29,9 +29,9 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	@Override
-	public void deleteBook(String isbn) {
+	public void deleteBook(Long id) {
 		for (Book book : list) {
-			if (isbn.equals(book.getIsbn())) {
+			if (id.equals(book.getId())) {
 				list.remove(book);
 			}
 		}

@@ -3,6 +3,7 @@ package com.spring.jsp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +28,7 @@ public class BookController {
 	@GetMapping("/viewBooks")
 	public String viewBooks(Model model) {
 		model.addAttribute("books", bookService.getBooks());
-		return "index";
+		return "view-books";
 	}
 
 	@GetMapping("/addBook")
@@ -38,10 +39,15 @@ public class BookController {
 
 	@PostMapping("/addBook")
 	public RedirectView addBook(@ModelAttribute("book") Book book, RedirectAttributes redirectAttributes) {
-		final RedirectView redirectView = new RedirectView("/book/addBook", true);
+		final RedirectView redirectView = new RedirectView("/book/viewBooks", true);
 		Book savedBook = bookService.addBook(book);
 		redirectAttributes.addFlashAttribute("savedBook", savedBook);
 		redirectAttributes.addFlashAttribute("addBookSuccess", true);
 		return redirectView;
 	} 
+	
+	@DeleteMapping("/deleteBook")
+	public void deleteBook(@ModelAttribute("book") Book book) {
+		bookService.deleteBook(book.getId());
+	}
 }
