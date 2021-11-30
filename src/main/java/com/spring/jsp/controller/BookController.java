@@ -61,7 +61,7 @@ public class BookController {
 	}
 
 	@PostMapping("/updateBook")
-	public String updateBook(Model model, Book book) {
+	public String updateBook(Model model, @ModelAttribute("book") Book book) {
 		bookService.updateBook(book);
 		return "redirect:/book/viewBooks";
 	}
