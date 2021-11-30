@@ -40,36 +40,11 @@
 											<i class="bi bi-pencil-square"></i> Editar
 										</button></a></td>
 								<td><button type="button" class="btn btn-outline-danger"
-										data-bs-toggle="modal" data-bs-target="#deleteBook">
-										<i class="bi bi-trash"></i> Eliminar
+										 onclick="deleteBook('${book.id}')">
+										<i class="bi bi-trash" ></i> Eliminar
 									</button></td>
 							</tr>
-							<!-- Modal -->
-							<div class="modal fade" id="deleteBook" tabindex="-1"
-								aria-labelledby="deleteBookLabel" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="deleteBookLabel">Eliminar
-												libro</h5>
-											<button type="button" class="btn-close"
-												data-bs-dismiss="modal" aria-label="Cancelar"></button>
-										</div>
-										<div class="modal-body">
-											<p>¿Está seguro de que desea borrar el libro
-												especificado?</p>
-											<p>No se podrán revertir los cambios una vez hecho.</p>
-										</div>
-										<div class="modal-footer">
-											<c:url var="add_book_url" value="/book/deleteBook" />
-											<button type="button" class="btn btn-secondary"
-												data-bs-dismiss="modal">Cancelar</button>
-											<button type="button" class="btn btn-primary"
-												onclick="deleteBook('${book.id}')">Aceptar</button>
-										</div>
-									</div>
-								</div>
-							</div>
+
 						</c:forEach>
 					</tbody>
 				</table>

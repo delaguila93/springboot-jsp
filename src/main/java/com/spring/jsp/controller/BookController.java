@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -62,10 +63,10 @@ public class BookController {
 		return "update-book";
 	}
 	
-	@PostMapping("/updateBook/{id}")
+	@PutMapping("/updateBook/{id}")
 	public RedirectView updateBook(@PathVariable("id") Long id, @ModelAttribute("book") Book book,RedirectAttributes redirectAttributes) {
 		final RedirectView redirectView = new RedirectView("/book/viewBooks", true);
-		Book bookUpdate = bookService.getBook(book.getId());
+		Book bookUpdate = bookService.getBook(id);
 		Book savedBook = null;
 		if(book.getAuthor() != null) {
 			bookUpdate.setAuthor(book.getAuthor());
