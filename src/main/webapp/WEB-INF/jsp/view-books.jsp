@@ -31,11 +31,12 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${books}" var="book">
+							<input name="id" type="hidden" value="${book.id}">
 							<tr>
 								<td>${book.isbn}</td>
 								<td>${book.name}</td>
 								<td>${book.author}</td>
-								<td><a href="/book/updateBook/${book.id}"><button
+								<td><a href="/book/updateBook?id=${book.id}"><button
 											type="button" class="btn btn-primary">
 											<i class="bi bi-pencil-square"></i> Editar
 										</button></a></td>
@@ -44,7 +45,6 @@
 										<i class="bi bi-trash" ></i> Eliminar
 									</button></td>
 							</tr>
-
 						</c:forEach>
 					</tbody>
 				</table>
@@ -52,8 +52,6 @@
 			<a href="/book/addBook">
 				<button type="button" class="btn btn-primary">Añadir libro</button>
 			</a>
-
-
 		</div>
 	</div>
 </body>

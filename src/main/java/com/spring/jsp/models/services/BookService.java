@@ -7,9 +7,10 @@ import com.spring.jsp.models.entity.Book;
 public interface BookService {
 	
 	List<Book> getBooks();
+	Book getBook(Long id);
 	Book addBook(Book book);
 	Book updateBook(Book book);
 	void deleteBook(Long id);
-	Book getBook(Long id);
+	void deleteBook(Book book);
 	
 }

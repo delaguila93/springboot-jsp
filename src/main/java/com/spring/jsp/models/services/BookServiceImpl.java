@@ -1,6 +1,5 @@
 package com.spring.jsp.models.services;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +12,19 @@ import com.spring.jsp.models.entity.Book;
 @Service
 public class BookServiceImpl implements BookService {
 
-	
-	
 	@Autowired
 	private BookDao bookDao;
 	
 	@Override
 	@Transactional(readOnly = true)
 	public List<Book> getBooks() {
-		return (List<Book>)bookDao.findAll();
+		return (List<Book>) bookDao.findAll();
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Book getBook(Long id) {	
+		return bookDao.findById(id).orElse(null);
 	}
 
 	@Override
@@ -43,9 +46,8 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
-	public Book getBook(Long id) {	
-		return bookDao.findById(id).orElse(null);
+	public void deleteBook(Book book) {
+		bookDao.delete(book);
 	}
 
 }

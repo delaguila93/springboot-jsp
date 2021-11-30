@@ -1,8 +1,3 @@
-/**
- * 
- */
-
-
 function deleteBook (id ){
   console.log(id);
   fetch("http://localhost:8080/book/deleteBook/"+id, {

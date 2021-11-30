@@ -13,9 +13,8 @@
     <body style="display: flex; justify-content: center; align-items: center; background-color: steelblue;">
     	<div class="card text-center" style="width: 50rem; box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);">
     		<div class="card-body">
-    			<h5 class="card-title">Añadir un nuevo libro</h5>
-    			<c:url var="update_book_url" value="/book/updateBook" />
-    			<form:form id="updateForm" action="${update_book_url}" method="post" modelAttribute="book" onsubmit="update('${book.id }')">
+    			<h5 class="card-title">Actualizar ${book.name}</h5>
+    			<form:form id="updateForm" action="/book/updateBook" method="post" modelAttribute="book">
     			<div class="form-floating mb-3">
     			  <form:input type="text" path="isbn" class="form-control" id="floatingInput" placeholder="ISBN" value="${book.isbn}" />
 				  <form:label path="isbn" for="floatingInput">ISBN</form:label>
